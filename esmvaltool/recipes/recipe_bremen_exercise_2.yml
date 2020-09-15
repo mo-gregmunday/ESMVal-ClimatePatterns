@@ -30,4 +30,4 @@ diagnostics:
         preprocessor: global_and_annual_mean
     scripts:
       exercise_script_2:
-        script: bremen_practicals/exercise_2.py
+        script: bremen_exercises/exercise_2.py

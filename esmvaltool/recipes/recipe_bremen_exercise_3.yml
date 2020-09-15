@@ -32,4 +32,4 @@ diagnostics:
         preprocessor: global_and_annual_mean
     scripts:
       exercise_script_3:
-        script: bremen_practicals/exercise_3.py
+        script: bremen_exercises/exercise_3.py

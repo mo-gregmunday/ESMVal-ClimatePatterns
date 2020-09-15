@@ -33,4 +33,4 @@ diagnostics:
         preprocessor: calculate_mmm
     scripts:
       exercise_script_1:
-        script: bremen_practicals/exercise_1.py
+        script: bremen_exercises/exercise_1.py
