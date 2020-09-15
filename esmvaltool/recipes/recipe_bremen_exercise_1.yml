@@ -1,25 +1,27 @@
 ---
 documentation:
-  description: Climate Modelling Part 2 (Bremen, 2019), recipe for exercise 1.
+  description: Example recipe 1 for the lecture 'Climate Modelling Part 2'.
   authors:
     - schlund_manuel
 
 datasets:
-  - {dataset: MERRA,       project: OBS,   tier: 1,   type: reanaly,   version: 1,       start_year: 2000, end_year: 2005}
-  - {dataset: CanESM2,     project: CMIP5, mip: Amon, exp: historical, ensemble: r1i1p1, start_year: 2000, end_year: 2005}
-  - {dataset: MPI-ESM-LR,  project: CMIP5, mip: Amon, exp: historical, ensemble: r1i1p1, start_year: 2000, end_year: 2005}
-  - {dataset: NorESM1-M,   project: CMIP5, mip: Amon, exp: historical, ensemble: r1i1p1, start_year: 2000, end_year: 2005}
+  - {dataset: NCEP,       project: OBS,   mip: Amon, tier: 2, type: reanaly, version: 1, start_year: 2000, end_year: 2005}
+  - {dataset: CanESM2,    project: CMIP5, mip: Amon, exp: historical, ensemble: r1i1p1,  start_year: 2000, end_year: 2005}
+  - {dataset: MPI-ESM-LR, project: CMIP5, mip: Amon, exp: historical, ensemble: r1i1p1,  start_year: 2000, end_year: 2005}
+  - {dataset: NorESM1-M,  project: CMIP5, mip: Amon, exp: historical, ensemble: r1i1p1,  start_year: 2000, end_year: 2005}
 
 
 preprocessors:
 
-  calc_mmm:
+  calculate_mmm:
     regrid:
-      target_grid: reference_dataset
+      target_grid: 2x2
       scheme: linear
+    climate_statistics:
+      operator: mean
     multi_model_statistics:
-      exclude: reference_dataset
-      span: overlap
+      exclude: NCEP
+      span: full
       statistics: [mean]
 
 
@@ -28,8 +30,7 @@ diagnostics:
   exercise_1:
     variables:
       tas:
-        preprocessor: calc_mmm
-        reference_dataset: MERRA
+        preprocessor: calculate_mmm
     scripts:
       exercise_script_1:
         script: bremen_practicals/exercise_1.py

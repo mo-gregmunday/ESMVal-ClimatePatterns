@@ -1,0 +1,35 @@
+---
+documentation:
+  description: Example recipe 3 for the lecture 'Climate Modelling Part 2'.
+  authors:
+    - schlund_manuel
+
+datasets:
+  - {dataset: CanESM2,    project: CMIP5, mip: Amon, exp: rcp26, ensemble: r1i1p1,  start_year: 2006, end_year: 2100}
+  - {dataset: MPI-ESM-LR, project: CMIP5, mip: Amon, exp: rcp26, ensemble: r1i1p1,  start_year: 2006, end_year: 2100}
+  - {dataset: NorESM1-M,  project: CMIP5, mip: Amon, exp: rcp26, ensemble: r1i1p1,  start_year: 2006, end_year: 2100}
+  - {dataset: CanESM2,    project: CMIP5, mip: Amon, exp: rcp85, ensemble: r1i1p1,  start_year: 2006, end_year: 2100}
+  - {dataset: MPI-ESM-LR, project: CMIP5, mip: Amon, exp: rcp85, ensemble: r1i1p1,  start_year: 2006, end_year: 2100}
+  - {dataset: NorESM1-M,  project: CMIP5, mip: Amon, exp: rcp85, ensemble: r1i1p1,  start_year: 2006, end_year: 2100}
+
+
+preprocessors:
+
+  global_and_annual_mean:
+    area_statistics:
+      operator: mean
+    annual_statistics:
+      operator: mean
+    convert_units:
+      units: celsius
+
+
+diagnostics:
+
+  exercise_3:
+    variables:
+      tas:
+        preprocessor: global_and_annual_mean
+    scripts:
+      exercise_script_3:
+        script: bremen_practicals/exercise_3.py
